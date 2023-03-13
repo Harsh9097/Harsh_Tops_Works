@@ -1,0 +1,7 @@
+18) What happens when „1‟== 1 is executed? 
+
+==>When the code 1 == '1' is executed in Python, it will return a boolean value of False.
+
+This is because 1 is an integer, and '1' is a string. In Python, the == operator checks for equality between two values, but it also checks the types of the values. If the types of the values being compared are not the same, the result of the comparison will always be False.
+
+In this case, 1 is an integer and '1' is a string, so their types are different. Therefore, the expression 1 == '1' will evaluate to False

@@ -1,0 +1,5 @@
+16)Can one block of except statements handle multiple exception?
+
+==>Yes, it is possible to handle multiple exceptions in a single block of except statements.
+
+In Python, you can specify multiple exceptions in a tuple inside a single except block. 

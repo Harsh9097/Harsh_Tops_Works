@@ -1,0 +1,8 @@
+
+28) What relationship is appropriate for Course and Faculty? 
+
+===>In an academic setting, the appropriate relationship between Course and Faculty is typically a many-to-many relationship. This means that a course can have multiple faculty members associated with it, and a faculty member can be associated with multiple courses.
+
+This relationship allows for flexibility in course offerings and faculty assignments. For example, a faculty member may be qualified to teach multiple courses in a department, and a course may require the expertise of multiple faculty members with different specialties.
+
+To implement this relationship, a database schema could have a "Course" table with a unique identifier for each course, and a "Faculty" table with a unique identifier for each faculty member. A third table, "Course_Faculty," would then be used to establish the many-to-many relationship between courses and faculty members. This table would contain records with the IDs of both the course and the faculty member associated with that course
