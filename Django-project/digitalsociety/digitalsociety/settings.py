@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chairmanapp',
     'societymemberapp',
+    'rest_framework',
+    'api',
+   
+   
 ]
 
 MIDDLEWARE = [
@@ -80,7 +84,7 @@ WSGI_APPLICATION = 'digitalsociety.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite2',
     }
 }
 

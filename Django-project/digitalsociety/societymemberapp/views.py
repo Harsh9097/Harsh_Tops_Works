@@ -174,7 +174,6 @@ def view_complaint_details(request,pk):
        complaint = Complaint.objects.filter(id = pk)
        context = {
                 'uid' : uid,
-                'sid' : sid,
                 'complaint' : complaint,
             }
        return render(request,"societymemberapp/complaint-details.html",context)

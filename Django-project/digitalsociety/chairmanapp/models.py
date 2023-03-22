@@ -212,6 +212,7 @@ class Complaint(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
+   
 
     def count_view(self):
         ccount = ComplaintViewDetails.objects.filter(complaint_id = self.id).count()
@@ -292,5 +293,5 @@ class Maintainance(models.Model):
     title = models.CharField(max_length=50)
     amount = models.CharField(max_length=50)
     duedate = models.DateField(max_length=30) 
-    status = models.CharField(max_length=30,default="PANDING")   
+    status = models.CharField(max_length=30,default="PENDING")   
     
