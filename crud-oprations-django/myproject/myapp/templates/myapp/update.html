@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Update Details</h1>
-        <h4><a herf="{% url 'all-student' %}">Click Here</a> For All Students</h4>
+        <h4><a href="{% url 'all-student' %}">Click Here</a> For All Students</h4>
             <form action="{% url 'change-student' %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{sid.id}}"/>
