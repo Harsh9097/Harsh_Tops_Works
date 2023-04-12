@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+            <style>
+                table
+                {
+                   border-collapse: collapse;
+                   width: 100%;
+                }
+                tr,th,td
+                {
+                   border:2px solid black;
+                }
+            </style>
+    </head>
+    <body>
+        <form action="{% url 'search-student' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter City name"/>
+            <input type="submit" name="submit" value="search" />
+        </form><br>
+        <table>
+            <tr>
+                <th>SR.No</th>
+                <th>Name</th>
+                <th>City</th>
+                <th colspan= "2">Action<th>
+            </tr>
+            {% for i in sall%}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.city}}</td>
+
+                
+                <th><a href="{% url 'update-student' i.id %}">Edit</a></th>
+                <th><a href="{% url 'del-student' i.id  %}"> Delete</a></th>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
