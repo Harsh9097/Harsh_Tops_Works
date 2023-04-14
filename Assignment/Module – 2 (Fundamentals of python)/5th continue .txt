@@ -1,5 +1,3 @@
 5. What is the purpose of using Continue statement?
 
-->A continue statement ends the current iteration of a loop.
-Program control is passed from the continue statement to the end of the loop body. 
-A continue statement can only appear within the body of an iterative statement, such as do , for , or while 
+->use of Continue statement is it allow skipping system in python when some conditon is met it's control transefer to begining the loop.

@@ -4,7 +4,6 @@ def fib(num):
     b=1
 
     if num==1:
-
         print(a)
     else:
         print(a)

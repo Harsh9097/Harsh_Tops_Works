@@ -1,0 +1,44 @@
+51) What is ORM ?
+Ans: Object relational mapper - which interact with your database. 
+
+52)What is exception?
+
+Ans: when any error distubs the normal flow of the program to hendle this type of error is called exception.
+
+53) How we can handle exception?
+
+Ans: Using try and except block we handle exception.
+
+54) What is finally keyword in python?
+
+Ans: Finally keyword is used in try.. except blocks.
+
+==>The finally block will be executed no matter if the try block raises an error or not. 
+
+55) What is identifier in python?
+
+Ans: It means they are identifier something like array,Function ,variable etc..
+
+56) What is the maximum possible length of an identifier in python?
+
+Ans: 79 characters.
+
+57) Is break a valid identifier?
+
+Ans: No, break is a inbuilt keyword - we can’t take keyword as a identifier name
+
+58) How many keywords are there in Python 3.11 2?
+
+Ans: they are 33 reserved keywords in Python.
+
+59) How to get the list of all keywords in python programmatically?
+
+Ans: import keyword
+	 ans = keyword.kwlist
+	 print(ans)
+
+60) What is insert method? How many arguments accept by insert method?
+
+Ans: Using of insert method we can store value in index wise
+	It accept 2 arguments from user 1st position and 2nd value
+	l1.insert(index,object value) 
