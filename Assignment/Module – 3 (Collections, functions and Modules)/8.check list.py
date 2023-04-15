@@ -1,4 +1,4 @@
-list=[8,9,0]
+list=[3,4,5,4]
 
 if not list:
     print("list is empty")
