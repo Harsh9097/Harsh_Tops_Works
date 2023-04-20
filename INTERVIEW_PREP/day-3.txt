@@ -1,0 +1,56 @@
+21) Difference between pop() , remove() and del().
+
+Ans: pop() can used to delete element from index. when we can not declare any index number it will take last element delete from list.
+
+ remove() can be used to delete elements from list.
+
+ del() can be used to delete whole list
+
+22) How we can remove all elements from list?
+
+Ans: We can remove all elements from list using clear().
+
+23) What is lambda function?
+
+Ans: A function without having any name is called lambda function.
+ It is called “anonymas function”.
+
+24) Difference between *args and **kwargs.
+Ans: *args:-
+ It means multiple arguments.
+ It pass tuple as a arguments.
+
+➔ **kwargs:-
+ It means multiple key and arguments.
+ It pass dictionary as a arguments.
+
+25) How to copy list?
+
+Ans: Using list constructor we can copy one list to another list.
+
+26) What are the key features of python?
+Ans:
+• Easy to code 
+• Free and Open Source:
+• Object-Oriented Language
+• High-Level programming language
+
+27) What is a collection in python?
+
+===>1)List[]
+	2)Tuple()
+	3)set{}
+	4)Dictionay
+
+28) What is the namespace in python?
+Ans: A namespace is a Naming system is give to unique name.
+
+29)how to remove duplicate value in list?
+
+=>using set we can remove  duplicate value in list.
+
+30) What is meaning of mutable and immutable.
+
+Ans: Mutable means we can change the value.
+
+• Immutable means we can’t change the value
