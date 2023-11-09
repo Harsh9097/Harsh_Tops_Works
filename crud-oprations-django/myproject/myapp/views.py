@@ -57,8 +57,8 @@ def del_student(request,pk):
     sid.delete()
     return redirect("all-student")
 
-def update_student(request,pk):
-    sid = student.objects.get(id = pk)
+def update_student(request,id):
+    sid = student.objects.get(id = id)
     context ={
         'sid' : sid
     }
