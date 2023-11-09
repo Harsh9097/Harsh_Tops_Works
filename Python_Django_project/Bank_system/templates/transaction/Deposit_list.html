@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags   %}
+{% block content %}
+
+
+
+
+ 
+<script>
+
+    
+    $(document).on('click', '.btn-staff-action', function() {
+        var action_Id = $(this).data('action-id');
+        console.log(action_Id)
+        var action_value = $(this).val();
+        var row = $(this).parent().parent();
+
+        var url = "{% url 'Staff_action_deposit' %}";
+        $.ajax({
+            url: url,
+            method : 'POST',
+            data: {
+                'id':action_Id,
+                'action':action_value,
+                
+            },
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+            },
+            success: function(response) {
+                if(!response.success){
+                    alert(response.message);
+                }
+                else{
+                    row.remove();
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('Error: ' + error);
+            }
+        });
+    });
+
+
+</script> 
+
+
+   {% if messages %}
+   <ul class="messages alert alert-success">
+       {% for message in messages %}
+       <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+       {% endfor %}
+   </ul>
+   {% endif %}
+   
+ 
+    <table id=approve_id class="table table-bordered">  
+        
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Depositor_Name</th>
+                <th>Account_No</th>
+                <th>Amount</th>
+                <th>contact_number</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+     <tbody>
+        
+    </tbody>
+</table>
+       
+    
+<script>
+     
+    $('#approve_id').DataTable({
+       
+        columnDefs: [{
+            orderable: false,
+            targets: -1
+        }, ],
+    
+        // Ajax for pagination
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '{% url "deposit_data_table" %}',
+            type: 'get',
+        },
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'depositor_name', name: 'depositor_name' },
+            { data: 'account_no', name: 'account_no' },
+            { data: 'amount', name: 'amount' },
+            { data: 'contact_number', name: 'contact_number' },
+            { data: 'actions', name: 'actions' }
+        ]
+    
+    });
+
+
+</script>
+    {% endblock %}
+
+
+   

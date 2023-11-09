@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags   %}
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-5">
+
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Create Pin</h2>
+              <hr>
+              <!-- General Form Elements -->
+  
+
+
+              <form action="" method="post">
+                {% csrf_token %}
+                <div class="row mb-3">
+                  <div class="col-sm-7">
+                    {{form.accounts_type | as_crispy_field}}
+                  </div>
+                </div>
+          
+                <div class="row mb-3">
+                  <div class="col-sm-7">
+                    {{form.account_no | as_crispy_field}}
+                  </div>
+                </div>
+          
+                <div class="row mb-3">
+                  <div class="col-sm-7">
+                    {{form.security_pin | as_crispy_field}}
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-7">
+                    {{form.confirm_security_pin | as_crispy_field}}
+                  </div>
+                </div>
+                
+              
+                <input type="submit" class="btn btn-primary" value="Submit">
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+   
+      </div>
+    </section>
+    
+
+<script>
+$(document).ready(function() {
+  var accountTypeSelect = $('#id_accounts_type');
+  var accountNoInput = $('#id_account_no');
+
+  accountTypeSelect.on('change', function() {
+    var selectedAccountType = accountTypeSelect.val();
+
+    $.ajax({
+      url: "{% url 'create_pin_ajax' %}",  
+      method: 'GET',
+      data: { 'account_type': selectedAccountType },
+      success: function(response) {
+        // Update the account number input field with the retrieved account number
+        accountNoInput.val(response.account_number);
+      },
+      error: function() {
+        // Handle error case
+        accountNoInput.val('');
+      }
+    });
+  });
+});
+</script>
+
+{% endblock %}

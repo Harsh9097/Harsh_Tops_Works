@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags   %}
+{% block content %}
+
+
+  <select id="accounts_list" class="form-control">
+    <option value="">All</option>
+    {% for account in accounts_type %}
+    <option value="{{account.0}}">{{account.1}}</option>
+    {% endfor %}
+  </select>
+ 
+    <table id=transaction_id class="table table-bordered">  
+        
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>User</th>
+                <th>Account_no</th>
+                <th>Transaction type</th>
+                <th>Amount</th>
+                <th>Date & Time</th> 
+                <th>Available_balance</th> 
+                
+            </tr>
+        </thead>
+     <tbody>
+          
+     </tbody>
+</table>
+       
+
+
+    
+<script>
+    $(document).ready(function() {
+        var data ={};
+        initialize_datatable(data);
+        $('#accounts_list').on("change", function () {
+            data['accounts_type']=$(this).val()
+            $("#transaction_id").DataTable().destroy();
+            initialize_datatable(data);
+          });
+    });
+
+
+    function initialize_datatable(data){
+        $('#transaction_id').DataTable({
+       
+        columnDefs: [{
+            orderable: false,
+            targets: -1
+        }, ],
+    
+        // Ajax for pagination
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '{% url "transaction_Data_table" %}',
+            type: 'get',
+            data :data,
+        },
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'user', name: 'user' },
+            { data: 'account_no', name: 'account_no' },
+            { data: 'transactions_type', name: 'transactions_type' },
+            { data: 'amount', name: 'amount' },
+            { data: 'date', name: 'date' },
+            { data: 'available_balance_after_transaction', name: 'available_balance_after_transaction' },
+
+
+        ]
+    
+    });
+    }
+
+</script>
+
+{% endblock %}
+
+
+   

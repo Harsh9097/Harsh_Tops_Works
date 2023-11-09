@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags   %}
+{% block content %}
+
+<div class="text-end">
+
+    <a href="{% url 'addstaff' %}"> <button type="button" class="btn btn-warning">Add New Staff</button></a> <br> <br>  
+</div>
+
+    
+
+    <table id="staff_id" class="table table-hover">  
+        
+        <thead>
+            <tr>
+                <th>id </th>
+            
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Contect Number</th>
+                <th>Dob</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+     <tbody>
+       
+    </tbody>
+</table>
+       
+<script>
+    $('#staff_id').DataTable({
+       
+        columnDefs: [{
+            orderable: false,
+            targets: -1
+        }, ],
+    
+        // Ajax for pagination
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '{% url "stafflist_ajax" %}',
+            type: 'get',
+        },
+        columns: [
+            // data: json key from prepare_results, name: model field name
+         
+            { data: 'id', name: 'id'},
+            { data: 'username', name: 'username' },
+            { data: 'first_name', name: 'first_name' },
+            { data: 'last_name', name: 'last_name' },
+            { data: 'email', name: 'email' },
+            { data: 'gender', name: 'gender' },
+            { data: 'contact_number', name: 'contact_number' },
+            { data: 'dob', name: 'dob' },
+            { data: 'actions', name: 'actions' }
+
+            
+        ]
+    
+    });
+    
+</script>
+
+<script>
+    $(document).on('click', '.ajax-delete-staff-btn', function (e) {
+        var id = $(this).data("id");
+        console.log(id)
+        var url ={% url 'staffdelete' %};
+        console.log(url)
+
+        var delete_ele = $(this);
+
+    Swal.fire({
+        html: 'Are you sure you want to delete',
+        icon: 'question',
+        showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonColor: "#7442DB",
+    }).then((result) => {
+
+     
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    "id": id,
+                    "csrfmiddlewaretoken": '{{ csrf_token }}'
+                },
+                
+                success:function (data) {
+
+                    delete_ele.parent().parent().remove(); 
+                  
+                    }
+                });
+                };
+            });
+            
+        })
+    
+</script>
+<script src= "{% static 'User/js/sweetalert.js' %}"></script>
+
+    
+    {% endblock %}

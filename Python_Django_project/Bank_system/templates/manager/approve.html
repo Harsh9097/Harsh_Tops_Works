@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags   %}
+{% block content %}
+
+
+<script>
+
+    
+    $(document).on('click', '.btn-manager-action', function() {
+        var action_Id = $(this).data('action-id');
+        var action_value = $(this).val()
+        $(this).parent().parent().remove();
+        var url = "{% url 'customer_approve_action' %}";
+        $.ajax({
+            url: url,
+            method : 'POST',
+            data: {
+                'id':action_Id,
+                'action':action_value,
+                
+            },
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+            },
+            success: function(response) {
+                $(this).remove();
+            },
+            error: function(xhr, status, error) {
+                // Handle any error response
+                alert('Error: ' + error);
+            }
+        });
+    });
+
+
+</script> 
+
+
+
+
+    <table id="approve_id"  class="table table-bordered">  
+        
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>First Name</th>
+                 <th>Last Name</th>
+                <th>Accounts Type</th>
+                <th>Adhar Number</th>
+                <th>Pan Number</th>
+                <th>Action</th> 
+            </tr>
+        </thead>
+     <tbody>
+            
+
+        
+    </tbody>
+</table>
+       
+     
+<script>
+    $('#approve_id').DataTable({
+       
+        columnDefs: [{
+            orderable: false,
+            targets: -1
+        }, ],
+    
+        // Ajax for pagination
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '{% url "customer_approve_data_table" %}',
+            type: 'get',
+        },
+        columns: [
+            { data: 'id', name: 'id'}, 
+            { data: 'first_name', name: 'first_name' },
+            { data: 'last_name', name: 'last_name' },
+            { data: 'accounts_type', name: 'user_account__accounts_type' },
+            { data: 'adhar_no', name: 'adhar_no' },
+            { data: 'pan_no', name: 'pan_no' },
+            { data: 'actions', name: 'actions' } 
+
+            
+        ]
+    
+    });
+</script>
+
+{% endblock %}

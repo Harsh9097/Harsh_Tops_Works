@@ -1,0 +1,285 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Bank Management System</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>  
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: May 30 2023 with Bootstrap v5.3.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+    <!--Data Table Css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    {% comment %} <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/b-print-2.3.6/datatables.min.css" rel="stylesheet"/> {% endcomment %}
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/b-print-2.3.6/datatables.min.js"></script>
+
+  </head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="" class="logo d-flex align-items-center">
+        <img src="{% static 'assets/img/logo.png' %}" alt="">
+        <span class="d-none d-lg-block">Pepoples Bank</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="{% get_media_prefix %}{{request.user.profile}}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{request.user.first_name}} {{request.user.last_name}}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>        
+
+            <li>
+                {% if request.user.is_superuser %}
+                    <a class="dropdown-item d-flex align-items-center" href="{% url 'managerprofile' %}">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                    </a>
+                {% endif %}
+            </li>
+            <li>
+                {% if request.user.role == "Staff" %}
+                    <a class="dropdown-item d-flex align-items-center" href="{% url 'staff_profile' %}">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                    </a>
+                {% endif %}
+            </li>
+            <li>
+                {% if request.user.role == "Customer" %}
+                    <a class="dropdown-item d-flex align-items-center" href="{% url 'customer_profile' %}">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                    </a>
+                {% endif %}
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'account_set_password' %}">
+                <i class="bi bi-gear"></i>
+                <span>Change password</span>
+              </a>
+            </li>
+            <li>
+        
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'account_logout' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+        {% if request.user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'manager' %}">
+                <i class="bi bi-grid"></i>
+                <span> Dashboard</span>
+                </a>
+            </li>
+        {% elif request.user.role == "Staff" %}
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'staff' %}">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+                </a>
+            </li>
+        {% elif request.user.role == "Customer" %}
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'customer' %}">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+                </a>
+            </li>
+        {% endif %}
+
+    {% if request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'stafflist' %}">
+            <i class="bi bi-journal-text"></i><span>Staff List</span>
+            </a>
+        </li>
+    {% endif %}
+    
+    {% if request.user.is_superuser or request.user.role == "Staff" %}
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'customer_list' %}">
+            <i class="bi bi-person"></i><span>Bank Customer</span>
+            </a>
+        </li>
+    {% endif %}
+    {% if request.user.is_superuser %}
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'customer-accounts-list'%}">
+        <i class="bi bi-bank"></i><span>Customer Accounts List </span>
+        </a>
+    </li>
+   {% endif %}
+    {% if request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'approvelist' %}">
+            <i class="bi bi-check-lg"></i><span>Request Approve Customer</span>
+            </a>
+        </li>
+    {% endif %}
+    {% if  request.user.role == "Staff" %}
+        <li class="nav-item">
+            <a class="nav-link collapsed"  href="{% url 'deposit_list' %}">
+            <i class="bi bi-check-lg"></i><span>Request Approve Deposit</span>
+            </a>
+        </li>
+    {% endif %}
+    {% if  request.user.role == "Customer" %}
+        <li class="nav-item">
+            <a class="nav-link collapsed"  href="{% url 'open-account' %}">
+            <i class="bi bi-bi bi-lock"></i><span>Open Accounts</span>
+            </a>
+        </li>
+   {% endif %} 
+ 
+   {% if request.user.is_superuser %}
+   <li class="nav-item">
+       <a class="nav-link collapsed" href="{% url 'approve_account_list' %}">
+       <i class="bi bi-check-lg"></i><span> Request Approve Customer Accounts </span>
+       </a>
+   </li>
+  {% endif %}
+   {% if  request.user.role == "Customer" %}
+        <li class="nav-item">
+            <a class="nav-link collapsed"  href="{% url 'create_pin' %}">
+            <i class="bi bi-bi bi-lock"></i><span>Create pin</span>
+            </a>
+        </li>
+   {% endif %}
+
+    {% if  request.user.role == "Customer" %}
+        <li class="nav-item">
+             <a class="nav-link collapsed"  href="{% url 'transaction' %}"> 
+            <i class="bi bi-book"></i><span>PassBook</span>
+            </a>
+        </li>
+     {% endif %} 
+
+     {% if  request.user.role == "Customer" %}
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="{% url 'transfer' %}"> 
+          <i class="bi bi-cash"></i><span>Transfer Money</span>
+        </a>
+      </li>
+      {% endif %}
+   
+      
+ 
+
+
+
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    {% block content %}
+ 
+    {% endblock %} 
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+ 
+    <div class="credits">
+      Designed by <a href="">Harsh Dholakiya</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'assets/vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'assets/vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> -->
+  
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+     
+    <!--Data table js-->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/b-print-2.3.6/datatables.min.js"></script>
+    
+</body>
+
+</html>
