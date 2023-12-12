@@ -1,2 +1,0 @@
-Welcome to file hendling.
-we are studty in python.

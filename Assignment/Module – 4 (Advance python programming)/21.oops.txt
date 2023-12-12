@@ -1,9 +1,0 @@
-21)What are oops concepts? Is multiple inheritance supported in java 
-
-===>There are four fundamental concepts of Object-oriented programming – Inheritance, Encapsulation, Polymorphism, and Data abstraction. 
-    It is essential to know about all of these in order to understand OOPs
-
-
-====>Multiple inheritance can be implemented in Java by using multiple interfaces. 
-    One class cannot extend to two classes simultaneously. But one class can implement one or more interfaces. 
-    This does not cause ambiguity because the declared methods in the interfaces are implemented in class

@@ -1,3 +1,0 @@
-14.What are negative indexes and why are they used?
-
-->A negative indexes is use in python programming language , use of negative indexes we can find reverse to the value .
