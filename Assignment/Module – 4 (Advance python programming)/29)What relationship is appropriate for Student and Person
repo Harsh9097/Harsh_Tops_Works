@@ -1,0 +1,7 @@
+29) What relationship is appropriate for Student and Person?
+
+===>In an academic setting, the appropriate relationship between Student and Person is generally a one-to-one relationship. This means that each student corresponds to one unique person, and each person can be associated with only one student.
+
+This relationship reflects the fact that a student is a specific type of person who is currently enrolled in an academic program. It also ensures that each student has a unique identity within the academic system, and that each person has only one active student record at any given time.
+
+To implement this relationship, a database schema could have a "Person" table with a unique identifier for each person, along with their name, contact information, and other personal details. A separate "Student" table would then be used to store information specific to each student, such as their student ID, enrollment status, academic program, and academic history. The Student table would have a foreign key that references the Person table to establish the one-to-one relationship.

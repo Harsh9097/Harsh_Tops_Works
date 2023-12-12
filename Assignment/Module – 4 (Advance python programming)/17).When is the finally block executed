@@ -1,0 +1,22 @@
+When is the finally block executed? 
+
+===>The finally block always executes when the try block exits. 
+    This ensures that the finally block is executed even if an unexpected exception occurs.
+
+=====> syntex:-
+
+ try:
+    # some code that might raise an exception
+    ...
+except ExceptionType:
+    # handle the exception
+    ...
+finally:
+    # some code that should always be executed, regardless of whether an exception is raised or not
+    ...
+
+
+
+
+
+

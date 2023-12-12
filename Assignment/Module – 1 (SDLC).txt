@@ -1,0 +1,25 @@
+										Python Assignment
+	
+										Module – 1 (SDLC)
+
+1)What is Software?
+
+->Software is a set of instructions, data or programs used to operate computers and execute specific tasks.
+
+2)What are the types of Applications?
+
+->Word processors.
+  Database programs.
+  Web browsers.
+  Deployment tools.
+  Image editors.
+  Communication platforms.
+
+3) What is programing?
+
+->Programming is the process of creating a set of instructions that tell a computer how to perform a task.
+  Programming can be done using a variety of computer programming languages, such as JavaScript, Python, and C++.
+
+4) What is Python?
+
+->Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis.

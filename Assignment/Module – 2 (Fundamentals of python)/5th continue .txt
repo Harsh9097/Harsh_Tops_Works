@@ -1,0 +1,3 @@
+5. What is the purpose of using Continue statement?
+
+->use of Continue statement is it allow skipping system in python when some conditon is met it's control transefer to begining the loop.
